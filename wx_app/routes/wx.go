@@ -1,6 +1,7 @@
 package routes
 
 import (
+	// contro "../controller"
 	"github.com/gin-gonic/gin"
 	contro "wx_app/controller"
 )
