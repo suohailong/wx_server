@@ -19,6 +19,8 @@ func VerifyWx(c *gin.Context){
 	flysnowRegexp:=regexp.MustCompile(`xtamp=(\d+)`)
 	params := flysnowRegexp.FindStringSubmatch(echostr)
 	
+	fmt.Println(params)
+
 	arr  := []string{"suohailong",params[1],nonce}
 	sort.Strings(arr)
 
