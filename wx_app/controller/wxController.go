@@ -25,6 +25,7 @@ func VerifyWx(c *gin.Context){
 	
 	fmt.Println("你好啊，怎么回事，怎么这里会超出index呢")
 	fmt.Println(c.QueryArray("echostr"))
+	fmt.Println(c.Request.URL.RawQuery)
 	// fmt.Println(params)
 
 	arr  := []string{"suohailong",tamp,nonce}
