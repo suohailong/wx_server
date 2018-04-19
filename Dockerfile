@@ -9,6 +9,5 @@ RUN echo $GOPATH
 
 RUN go get -d -v ./...
 
+WORKDIR /go/src/wx_app/
 
-
-CMD ["go run main.go"]
