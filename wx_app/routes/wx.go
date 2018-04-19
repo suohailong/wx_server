@@ -2,7 +2,7 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	contro "../controller"
+	contro "wx_app/controller"
 )
 
 func SetUserRoutes(router *gin.Engine) *gin.Engine {

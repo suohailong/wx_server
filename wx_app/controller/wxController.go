@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"sort"
 	"crypto/sha1"
-	"bytes"
+	"strings"
 	"fmt"
 	"io"
 )
@@ -20,21 +20,20 @@ func VerifyWx(c *gin.Context){
 	sort.Strings(arr)
 	
 	tmpStr:=""
-	for i,v := range arr{
-		i=i;
+	for _,v := range arr{
 		tmpStr = tmpStr+v;
 	}
 	fmt.Println(tmpStr)
 	h := sha1.New()
 	io.WriteString(h, tmpStr)
-	Result:=h.Sum(nil)
 
-	fmt.Println("% x", Result)
-	fmt.Println("% x", []byte(signature))
+
+	result := fmt.Sprintf("%x",h.Sum(nil))
+	fmt.Println(result)
 
 	
 
-	if bytes.Compare([]byte(signature),[]byte(signature))==0{
+	if strings.Compare(signature,result)==0{
 		c.String(http.StatusOK,"true")
 	}else{
 		c.String(http.StatusOK,"false")
