@@ -9,21 +9,21 @@ import (
 	"strings"
 	"fmt"
 	"io"
-	"regexp"
+	// "regexp"
 )
 
 func VerifyWx(c *gin.Context){
 	signature := c.Query("signature")
-	echostr  := c.Query("echostr")
+	tamp  := c.Query("tamp")
 	nonce:= c.Query("nonce")
-	flysnowRegexp:=regexp.MustCompile(`xtamp=(\d+)`)
-	params := flysnowRegexp.FindStringSubmatch(echostr)
+	// flysnowRegexp:=regexp.MustCompile(`xtamp=(\d+)`)
+	// params := flysnowRegexp.FindStringSubmatch(echostr)
 	
 	fmt.Println("你好啊，怎么回事，怎么这里会超出index呢")
-	fmt.Println(echostr)
-	fmt.Println(params)
+	fmt.Println(tamp)
+	// fmt.Println(params)
 
-	arr  := []string{"suohailong",params[1],nonce}
+	arr  := []string{"suohailong",tamp,nonce}
 	sort.Strings(arr)
 
 	tmpStr:=""
