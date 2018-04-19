@@ -1,7 +1,7 @@
 package main
 
 import (
-	routerInstance "routes"
+	routerInstance "wx_app/routes"
 	// "encoding/json"
 )
 
