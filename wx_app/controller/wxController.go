@@ -13,6 +13,10 @@ import (
 )
 
 func VerifyWx(c *gin.Context){
+
+	if r:=recover();r!=nil{
+		fmt.Printf("runTime error caught:%v",r)
+	}
 	signature := c.Query("signature")
 	tamp  := c.Query("tamp")
 	nonce:= c.Query("nonce")
@@ -20,7 +24,7 @@ func VerifyWx(c *gin.Context){
 	// params := flysnowRegexp.FindStringSubmatch(echostr)
 	
 	fmt.Println("你好啊，怎么回事，怎么这里会超出index呢")
-	fmt.Println(tamp)
+	fmt.Println(c.QueryArray("echostr"))
 	// fmt.Println(params)
 
 	arr  := []string{"suohailong",tamp,nonce}
