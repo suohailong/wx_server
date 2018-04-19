@@ -19,6 +19,8 @@ func VerifyWx(c *gin.Context){
 	flysnowRegexp:=regexp.MustCompile(`xtamp=(\d+)`)
 	params := flysnowRegexp.FindStringSubmatch(echostr)
 	
+	fmt.Println("你好啊，怎么回事，怎么这里会超出index呢")
+	fmt.Println(echostr)
 	fmt.Println(params)
 
 	arr  := []string{"suohailong",params[1],nonce}
