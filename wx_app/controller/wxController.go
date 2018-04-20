@@ -12,22 +12,12 @@ import (
 	"regexp"
 )
 
-func VerifyWx(c *gin.Context){
-
-	if r:=recover();r!=nil{
-		fmt.Printf("runTime error caught:%v",r)
-	}
-	signature := c.Query("signature")
-
-	nonce:= c.Query("nonce")
+func verifyWxSignature(signature,url,nonce string) bool{
 	flysnowRegexp:=regexp.MustCompile(`xtamp=(\d+)`)
-	fmt.Printf("我是url%q\n",c.Request.URL.RawQuery)
-
-	params := flysnowRegexp.FindStringSubmatch(c.Request.URL.RawQuery)
-	
+	fmt.Printf("我是url%q\n",url)
+	params := flysnowRegexp.FindStringSubmatch(url)
 	arr  := []string{"suohailong",params[1],nonce}
 	sort.Strings(arr)
-
 	tmpStr:=""
 	for _,v := range arr{
 		tmpStr = tmpStr+v;
@@ -38,12 +28,18 @@ func VerifyWx(c *gin.Context){
 
 	result := fmt.Sprintf("%x",h.Sum(nil))
 	if strings.Compare(signature,result)==0{
-		c.String(http.StatusOK,"true")
+		return true
 	}else{
-		c.String(http.StatusOK,"false")
+		return false
 	}
-	
-	
-	
+}
 
+func VerifyWx(c *gin.Context){
+
+	if r:=recover();r!=nil{
+		fmt.Printf("runTime error caught:%v",r)
+	}
+	echostr := c.Query("echostr")
+
+	c.String(http.StatusOK,echostr)
 }
