@@ -21,14 +21,11 @@ func VerifyWx(c *gin.Context){
 
 	nonce:= c.Query("nonce")
 	flysnowRegexp:=regexp.MustCompile(`xtamp=(\d+)`)
+	fmt.Printf("我是url%q\n",c.Request.URL.RawQuery)
+
 	params := flysnowRegexp.FindStringSubmatch(c.Request.URL.RawQuery)
 	
-	fmt.Println("你好啊，怎么回事，怎么这里会超出index呢")
-	// fmt.Println(c.QueryArray("echostr"))
-	fmt.Println(params)
-	// fmt.Println(params)
-
-	arr  := []string{"suohailong",params[0],nonce}
+	arr  := []string{"suohailong",params[1],nonce}
 	sort.Strings(arr)
 
 	tmpStr:=""
